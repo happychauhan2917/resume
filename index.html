@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Candidate Resume</title>
+
+<style>
+body{
+  font-family:Poppins, sans-serif;
+  text-align:center;
+  background:linear-gradient(135deg,#ffd6e7,#e6ccff);
+  overflow-x:hidden;
+}
+
+/* Floating flowers & bows */
+.hearts{
+  position:fixed;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  display:none;
+}
+.heart{
+  position:absolute;
+  font-size:22px;
+  animation:float 5s linear infinite;
+}
+@keyframes float{
+  from{transform:translateY(100vh);}
+  to{transform:translateY(-10vh);}
+}
+
+/* Top Card */
+.topcard{
+  background:white;
+  width:70%;
+  margin:20px auto;
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+h1{color:#444;}
+
+/* Button box */
+.btnbox{
+  background:white;
+  width:70%;
+  margin:auto;
+  padding:15px;
+  border-radius:20px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+button{
+  background:#ff9ecb;
+  border:none;
+  padding:12px 18px;
+  margin:10px;
+  border-radius:25px;
+  cursor:pointer;
+}
+button:hover{transform:scale(1.08);}
+
+/* Modal */
+.modal{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.4);
+}
+
+.content{
+  background:white;
+  width:330px;
+  padding:20px;
+  border-radius:20px;
+  margin:8% auto;
+  animation:pop 0.3s ease;
+}
+
+@keyframes pop{
+  from{transform:scale(0.6);}
+  to{transform:scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="topcard">
+  <h1>Candidate Profile 🌷</h1>
+  <h3>Frontend Developer | Creative Thinker ✨</h3>
+  <p>
+  Welcome!  
+  This interactive resume highlights skills, education and experience  
+  using HTML, CSS & JavaScript.  
+  Explore the sections below to know more 🌸
+  </p>
+</div>
+
+<div class="btnbox">
+  <button onclick="openModal('personal')">Personal Details</button>
+  <button onclick="openModal('education')">Education</button>
+  <button onclick="openModal('skills')">Skills</button>
+  <button onclick="openModal('experience')">Experience</button>
+  <button onclick="openModal('family')">Family Background</button>
+  <button onclick="openModal('hobbies')">Hobbies</button>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="modal">
+  <div class="content" id="modalContent"></div>
+</div>
+
+<script>
+
+/* Flowers & bows instead of hearts */
+function startHearts(){
+  const h=document.getElementById("hearts");
+  h.style.display="block";
+  h.innerHTML="";
+
+  const emojis=["🌸","🌷","💮","🎀","🌹"];
+
+  for(let i=0;i<15;i++){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.style.left=Math.random()*100+"%";
+    heart.style.animationDuration=(4+Math.random()*3)+"s";
+    heart.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+    h.appendChild(heart);
+  }
+}
+
+function stopHearts(){
+  document.getElementById("hearts").style.display="none";
+}
+
+/* Modal Content */
+function openModal(type){
+  startHearts();
+  let c="";
+
+  if(type=="personal"){
+    c=`
+    <h3>Personal Details 🌸</h3>
+    Name: Happy Chauhan<br>
+    Gender: Female<br>
+    Age: 19<br>
+    Contact: 9354....28<br>
+    Email: happychauhan2917@gmail.com<br>
+    Marital Status: Single<br>
+    Languages: English, Hindi<br><br>
+    <button onclick="closeModal()">Go Back</button>`;
+  }
+
+  if(type=="education"){
+    c=`
+    <h3>Education 🎓</h3>
+    10th – 75%<br>
+    12th – 77%<br>
+    College: DPG Institute of Technology and Development <br>
+    Course: BCA (Pursuing)<br><br>
+    <button onclick="closeModal()">Go Back</button>`;
+  }
+
+  if(type=="skills"){
+    c=`
+    <h3>Skills 💻</h3>
+    HTML<br>
+    CSS<br>
+    JavaScript<br>
+    Responsive Design<br>
+    Basic C<br><br>
+    <button onclick="closeModal()">Go Back</button>`;
+  }
+
+  if(type=="experience"){
+    c=`
+    <h3>Experience 💼</h3>
+    <b>Globiz India Services Pvt Ltd – Web Intern</b><br>
+    Duration: 6–7 Months<br>
+    • Worked on client projects<br>
+    • Built responsive websites<br>
+    • Frontend development tasks<br><br>
+    <button onclick="closeModal()">Go Back</button>`;
+  }
+
+  if(type=="family"){
+    c=`
+    <h3>Family Background 👨‍👩‍👧</h3>
+    Father – Business<br>
+    Mother – Chartered Accountant<br>
+    Siblings – 1 Sister<br>
+    Reference – Available on request<br><br>
+    <button onclick="closeModal()">Go Back</button>`;
+  }
+
+  if(type=="hobbies"){
+    c=`
+    <h3>Hobbies 🎨</h3>
+    Coding<br>
+    Cooking<br>
+    Crafting<br>
+    Music<br><br>
+    <button onclick="closeModal()">Go Back</button>`;
+  }
+
+  document.getElementById("modalContent").innerHTML=c;
+  document.getElementById("modal").style.display="block";
+}
+
+function closeModal(){
+  stopHearts();
+  document.getElementById("modal").style.display="none";
+}
+
+</script>
+
+</body>
+</html>
